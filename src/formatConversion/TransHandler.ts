@@ -43,15 +43,12 @@ export function texturePacker2Oasis(fileObjArr: any[]) {
             }
             break;
           case "trimmed":
-            break;
-          case "spriteSourceSize":
             sprite.atlasRegionOffset = {
               x: frame.spriteSourceSize.x,
               y: frame.spriteSourceSize.y,
+              z: frame.sourceSize.w - frame.spriteSourceSize.x - frame.frame.w,
+              w: frame.sourceSize.h - frame.spriteSourceSize.y - frame.frame.h,
             };
-            break;
-          case "sourceSize":
-            sprite.originalSize = frame.sourceSize;
             break;
           case "pivot":
             sprite.pivot = frame.pivot;
