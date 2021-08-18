@@ -6,7 +6,7 @@ Atlas tool for oasis engine
 ## 1、Install
 
 ```
-tnpm i @oasis-engine/tool-atlas -g
+npm i @oasis-engine/tool-atlas -g
 ```
 
 ## 2、Use command in terminal
@@ -55,7 +55,7 @@ Options detail
 ## 1、Install
 
 ```
-tnpm i @oasis-engine/tool-atlas --save
+npm i @oasis-engine/tool-atlas --save
 ```
 
 ## 2、Call api
