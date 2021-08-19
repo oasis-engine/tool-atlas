@@ -33,7 +33,7 @@ export class Exporter {
     const res = { atlasItems: <any>[], version: version, format: 1};
     const imageFile = await this._generatePackedImage(output, packer);
     const item = {
-      "img": `./${output}.png`,
+      "img": `./${path.basename(output)}.png`,
       "sprites": <any>[]
     };
     res.atlasItems.push(item);
