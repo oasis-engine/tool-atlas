@@ -71,7 +71,7 @@ export class Exporter {
   }
 
   private async _generatePackedImage(output: string, packer: MaxRectsPacker) {
-    const { packedWidth, packedHeight, packedRects, images } = packer;
+    const { packedWidth, packedHeight, packedRects, images, padding } = packer;
     const packedImage = new Jimp(packedWidth, packedHeight);
     for (let i = 0, l = packedRects.length; i < l; ++i) {
       const rect = packedRects[i];
@@ -82,10 +82,32 @@ export class Exporter {
         const startX = rect.x;
         const startY = rect.y;
         for (let i = 0; i < width; ++i) {
+          const x = startX + i;
           for (let j = 0; j < height; ++j) {
-            const x = startX + i;
             const y = startY + j;
             packedImage.setPixelColor(image.getPixelColor(i, j), x, y);
+          }
+        }
+
+        // Handle padding pixels.
+        if (padding > 0) {
+          for (let i = 1; i <= padding; ++i) {
+            // Set top and bottom.
+            const topY = startY - i;
+            const bottomY = startY + height + i - 1;
+            for (let j = 0; j < width; ++j) {
+              const x = startX + j;
+              packedImage.setPixelColor(image.getPixelColor(j, i - 1), x, topY);
+              packedImage.setPixelColor(image.getPixelColor(j, height - i), x, bottomY);
+            }
+            // Set left and right.
+            const leftX = startX - i;
+            const rightX = startX + width + i - 1;
+            for (let j = 0; j < height; ++j) {
+              const y = startY + j;
+              packedImage.setPixelColor(image.getPixelColor(i - 1, j), leftX, y);
+              packedImage.setPixelColor(image.getPixelColor(width - i, j), rightX, y);
+            }
           }
         }
       }

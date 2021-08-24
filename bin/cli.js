@@ -35,9 +35,9 @@ program
   .option("-pot, --pot []", "the texture size forced power of 2", false)
   .action(async (srcDir, other, cmdObj) => {
     other.push(srcDir);
-    cmdObj.padding = Number(cmdObj.padding);
-    cmdObj.maxWidth = Number(cmdObj.maxWidth);
-    cmdObj.maxHeight = Number(cmdObj.maxHeight);
+    cmdObj.padding = Math.floor(cmdObj.padding);
+    cmdObj.maxWidth = Math.floor(cmdObj.maxWidth);
+    cmdObj.maxHeight = Math.floor(cmdObj.maxHeight);
     const ret = await core.pack(other, cmdObj);
     console.log(ret);
 

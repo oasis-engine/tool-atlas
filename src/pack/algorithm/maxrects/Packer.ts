@@ -36,6 +36,7 @@ export class MaxRectsPacker {
   packedRects: Array<Rect> = [];
   packedWidth: number = 0;
   packedHeight: number = 0;
+  padding: number;
   images: any = {};
 
   private _pack;
@@ -44,13 +45,12 @@ export class MaxRectsPacker {
   private _rectsCount: number = 0;
   private _width: number;
   private _height: number;
-  private _padding: number;
   private _allowRotate: boolean;
   private _square: boolean;
   private _pot: boolean;
 
   constructor(option: MaxRectsOption) {
-    this._padding = option.padding;
+    this.padding = option.padding;
     this._allowRotate = option.allowRotate;
 
     const square = (this._square = option.square);
@@ -109,7 +109,7 @@ export class MaxRectsPacker {
     if (len > 0) {
       let maxWidth = 0;
       let maxHeight = 0;
-      let padding = this._padding;
+      let padding = this.padding;
       let doublePadding = padding * 2;
       for (let i = 0; i < len; ++i) {
         const rect = rects[i];
@@ -178,7 +178,7 @@ export class MaxRectsPacker {
   }
 
   private _addRect(width: number, height: number, name: string): void {
-    const padding = this._padding * 2;
+    const padding = this.padding * 2;
     if (padding > 0) {
       width += padding;
       height += padding;
