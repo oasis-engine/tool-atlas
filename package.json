@@ -1,6 +1,6 @@
 {
   "name": "@oasis-engine/tool-atlas",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "atlas tool for oasis engine",
   "main": "dist/atlas-tool.js",
   "bin": {
