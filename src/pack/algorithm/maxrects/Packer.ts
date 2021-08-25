@@ -1,5 +1,4 @@
 import Jimp from "jimp";
-const path = require("path");
 
 import { Rect } from "../Rect";
 import { MaxRectsMethod } from "../enums/MaxRectsMethod";
@@ -30,6 +29,7 @@ export interface MaxRectsOption {
   pot: boolean;
   format: AtlasFormat;
   output: string;
+  editorExtras: Array<any>;
 }
 
 export class MaxRectsPacker {
@@ -90,11 +90,11 @@ export class MaxRectsPacker {
     this._exporter = new Exporter(option.format);
   }
 
-  async addImages(imageFiles: Array<string>) {
+  async addImages(imageFiles: Array<string>, names: Array<string>) {
     const { images } = this;
     for (let i = 0, l = imageFiles.length; i < l; ++i) {
       const file = imageFiles[i];
-      const name = path.basename(file, path.extname(file));
+      const name = names[i];
       const image = await Jimp.read(file);
       images[name] = image;
       const { bitmap } = image;
