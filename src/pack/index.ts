@@ -21,7 +21,7 @@ export async function pack(imageFiles: Array<string>, cliOptions: any) {
       return await packWithMaxRects(version, realImageFiles, {
         width: cliOptions.maxWidth || 1024,
         height: cliOptions.maxHeight || 1024,
-        padding: cliOptions.padding || 0,
+        padding: typeof cliOptions.padding === 'undefined' ? 1 : cliOptions.padding,
         allowRotate: cliOptions.allowRotate || false,
         square: cliOptions.square || false,
         pot: cliOptions.pot || false,
