@@ -1,5 +1,4 @@
 const fs = require('fs');
-const fsPromise = require('fs/promises');
 const path = require('path');
 
 const EXT = ['.png', '.jpg', '.jpeg'];
@@ -20,7 +19,7 @@ export async function findAllImageFilesSync(inputFiles: Array<string>, outFiles:
 
     const file = path.resolve(inputFile);
     if (fs.existsSync(file)) {
-      const stats = await fsPromise.stat(file);
+      const stats = fs.statSync(file);
       
       if (stats.isDirectory()) {
         const files = fs.readdirSync(file);
