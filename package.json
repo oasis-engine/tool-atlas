@@ -3,6 +3,7 @@
   "version": "0.5.6",
   "description": "atlas tool for oasis engine",
   "main": "dist/atlas-tool.js",
+  "types": "src/index.ts",
   "bin": {
     "oasis-tool-atlas": "./bin/cli.js"
   },
